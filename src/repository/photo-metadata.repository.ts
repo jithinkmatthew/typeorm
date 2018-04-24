@@ -37,8 +37,14 @@ createConnection(/*...*/).then(async connection => {
     */
 
 
+    /* -- METADATA - Loading with their relations
     let photoMetadata = connection.getRepository(PhotoMetadata);
     let meta = await photoMetadata.find({ relations: ["photo"] });
     console.log('Hi-photo-metadata', meta);
+    */
+
+    /*
+     
+     */
 
 }).catch(error => console.log(error));

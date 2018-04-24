@@ -1,5 +1,6 @@
 import {createConnection} from "typeorm";
 import {Photo} from "../entity/photo.entity";
+import { PhotoMetadata } from "../entity/photo-metadata.entity";
 
 createConnection(/*...*/).then(async connection => {
 
@@ -72,6 +73,34 @@ createConnection(/*...*/).then(async connection => {
     
 
     */
+
+    //* -- CASCADE 
+    
+    let metadata = new PhotoMetadata();
+    metadata.height = 6402;
+    metadata.width = 4802;
+    metadata.orientation = "Casecade portait";
+    metadata.compressed = true;
+    metadata.comment = "Casecade cybershoot";
+
+    // create photo metadata object
+    let photo = new Photo();
+    photo.name = "Casecade Me and Bears";
+    photo.description = "Casecade I am near polar bears";
+    photo.filename = "Casecade photo-with-bears.jpg";
+    photo.views = 98;
+    photo.isPublished = true;
+    photo.metadata = metadata; // this way we connect them
+
+    // get repository
+    let photoRepository = connection.getRepository(Photo);
+
+    // saving a photo also save the metadata
+    await photoRepository.save(photo);
+
+    console.log("Photo is saved, photo metadata is saved too. :)")
+
+    //*/
 
 
 }).catch(error => console.log(error));

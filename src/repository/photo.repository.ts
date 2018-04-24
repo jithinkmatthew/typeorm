@@ -10,10 +10,13 @@ createConnection(/*...*/).then(async connection => {
     photo.filename = "photo-with-bears.jpg";
     photo.views = 1;
     photo.isPublished = true;
-
+    const photos = [
+        photo,
+        photo
+    ]
     let photoRepository = connection.getRepository(Photo);
 
-    await photoRepository.save(photo);
+    await photoRepository.save(photos);
     console.log("Photo has been saved");
 
     let savedPhotos = await photoRepository.find();
@@ -42,6 +45,23 @@ createConnection(/*...*/).then(async connection => {
     let [allPhotos, photosCount] = await photoRepository.findAndCount();
     console.log("All photos: ", allPhotos);
     console.log("Photos count: ", photosCount);
+    */
+
+    /* -- UPDATE
+
+    let photoRepository = connection.getRepository(Photo);
+    let photoToUpdate = await photoRepository.findOne(2006);
+    photoToUpdate.name = "Me, my friends";
+    await photoRepository.save(photoToUpdate);
+    
+    */
+
+    /* -- DELETE
+
+    let photoRepository = connection.getRepository(Photo);
+    let photoToRemove = await photoRepository.findOne(2006);
+    await photoRepository.remove(photoToRemove);
+
     */
 
 }).catch(error => console.log(error));

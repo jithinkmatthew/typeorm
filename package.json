@@ -13,6 +13,6 @@
       "pg": "^7.3.0"
    },
    "scripts": {
-      "start": "ts-node src/repository/photo.repository.ts"
+      "start": "ts-node src/repository/photo-metadata.repository.ts"
    }
 }
